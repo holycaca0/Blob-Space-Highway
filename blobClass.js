@@ -1,4 +1,4 @@
-class Blob {
+class Blobby {
   constructor(x, y) {
     this.x = x;
     this.y = y;
@@ -7,10 +7,11 @@ class Blob {
   }
   draw() {
     // background(255, 0, 0, 255);
-    stroke(255, 83, 73, 100);
     // noFill();
-    translate(0, 0);
+    translate(0, -100);
     beginShape();
+    // stroke(255, 83, 73, 255);
+    stroke(0, 80);
     for (let angle = 0; angle < TWO_PI; angle += 0.5) {
       let xoff = map(cos(angle), -1, 1, 0, this.noiseMax);
       let yoff = map(cos(angle), -1, 1, 0, this.noiseMax);
