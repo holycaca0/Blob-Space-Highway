@@ -1,6 +1,6 @@
 const CANVAS_SIZE = 400;
 
-let cameraSliders = { x: null, y: null, z: null };
+// let cameraSliders = { x: null, y: null, z: null };
 
 class Axis {
   constructor(x, y, z) {
@@ -8,7 +8,6 @@ class Axis {
     this.y = y;
     this.z = z;
   }
-  cameraSliders() {}
 }
 
 function setup() {
