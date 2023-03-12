@@ -1,27 +1,3 @@
-// class Blobby {
-//   constructor(x, y) {
-//     this.x = x;
-//     this.y = y;
-//     this.noiseMax = 5;
-//     this.zoff = 0;
-//   }
-//   draw(spectrum) {
-//     translate(0, -100);
-
-//     beginShape();
-//     for (let angle = 0; angle < TWO_PI; angle += 0.2) {
-//       let xoff = map(cos(angle), -1, 1, 0, this.noiseMax);
-//       let yoff = map(cos(angle), -1, 1, 0, this.noiseMax);
-//       let radius = map(noise(xoff, yoff, this.zoff), 0, 1, 100, 200);
-//       let x = radius * cos(angle);
-//       let y = radius * sin(angle);
-//       vertex(x, y);
-//     }
-//     endShape(CLOSE);
-//     this.zoff += 0.01;
-//   }
-// }
-
 class Blobby {
   constructor(xoff, yoff, radius) {
     this.xoff = xoff;
@@ -48,6 +24,7 @@ class Blobby {
 
     push();
     beginShape();
+    fill(200, 100, 40);
     translate(0, -200);
     for (let i = 0; i < TWO_PI; i += 0.1) {
       // let offset = map(noise(this.xoff, this.yoff), 0, 1, -25, 25);

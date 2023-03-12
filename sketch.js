@@ -1,4 +1,4 @@
-let blobby, terrain, sound, jump, button, fft;
+let blobby, terrain, sound, jump, button, fft, myShader;
 let scl = 30;
 let w = 1400;
 let h = 800;
@@ -6,6 +6,7 @@ let h = 800;
 function preload() {
   sound = loadSound("./assets/sebastiAn.mp3");
   // sound = loadSound("./assets/the_midnight.mp3");
+  // myShader = loadShader("./assets/shader.vert", "./assets/shader.frag");
 }
 
 function togglePlayer() {
@@ -43,6 +44,8 @@ function setup() {
 }
 
 function draw() {
+  shader(myShader);
+  myShader.setUniform("uFrameCount", frameCount);
   background(0);
   let spectrum = fft.analyze();
   // console.log(spectrum);
@@ -61,4 +64,5 @@ function draw() {
   terrain.draw();
   terrain.updateTerrain();
   blobby.draw(spectrum);
+  shader(myShader);
 }
