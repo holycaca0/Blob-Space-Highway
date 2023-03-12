@@ -1,37 +1,42 @@
-let blobby, terrain;
+let blobby, terrain, sound, jump, button, fft;
+// let myShader;
 let scl = 30;
 let w = 1400;
 let h = 800;
-let song;
-let button;
-let amp;
-let fft;
-let freqBins = 64;
-let angle = 0;
-let img;
-let catimg;
+
+function preload() {
+  sound = loadSound("./assets/sebastiAn.mp3");
+  // sound = loadSound("./assets/the_midnight.mp3");
+  // myShader = loadShader("./assets/shader.vert", "./assets/shader.frag");
+}
 
 function togglePlayer() {
-  if (!song.isPlaying()) {
-    song.play();
-    song.setVolume(1);
+  if (!sound.isPlaying()) {
+    sound.play();
+    // sound.setVolume(1);
   } else {
-    song.pause();
+    sound.pause();
   }
+}
+
+function toggleJump() {
+  let length = sound.duration();
+  let timestamp = random(length);
+  sound.jump(timestamp);
 }
 
 function setup() {
   // song = loadSound("./fluffy.mp3", loaded);
   fft = new p5.FFT();
   fft.setInput(song);
-  // blob.setup();
-  createCanvas(windowWidth, windowHeight, WEBGL);
+  play = createButton("Play");
+  play.mousePressed(togglePlayer);
+  jump = createButton("Jump");
+  jump.mousePressed(toggleJump);
 
-  amp = new p5.Amplitude();
-  button = createButton("Play");
-  button.mousePressed(togglePlayer);
-  background(0);
-  blobby = new Blobby(10, 10, img); // pass the image to the blobby object
+  createCanvas(windowWidth, windowHeight, WEBGL);
+  // blobby = new Blobby(200, 200);
+  blobby = new Blobby(200, 200, 100);
   terrain = new Terrain(0, w / scl, h / scl, scl, w, h);
   for (let x = 0; x < terrain.cols; x++) {
     terrain.terrain[x] = [];
@@ -39,22 +44,31 @@ function setup() {
       terrain.terrain[x][y] = 0;
     }
   }
-}
-
-
-function preload() {
-  song = loadSound("./fluffy.mp3");
-  catimg = loadImage("nyancat.jpg")
-  img = loadImage('asteroid2.jpg'); // assign the image to the global variable img
-  blobby = new Blobby(200, 200, img); // create a new blobby object and pass the image to it
+  fft = new p5.FFT(0, 256);
 }
 
 function draw() {
-  camera(width / 2, height / 2, 500, width / 2, height / 2, 0, 0, 1, 0);
+  // shader(myShader);
+  // myShader.setUniform("uFrameCount", frameCount);
+  background(0);
+  let spectrum = fft.analyze();
+  // console.log(spectrum);
+  camera(width / 2, height / 2, 600, width / 2, height / 2, 0, 0, 1, 0);
+
+  push();
+  let stars = {
+    x: random(width),
+    y: random(height / 3),
+    size: random(3, 5),
+  };
+  ellipse(stars.x, stars.y, stars.size, stars.size);
+  pop();
+
   translate(width / 2, height / 2);
   terrain.draw();
   terrain.updateTerrain();
-  blobby.draw();
+  blobby.draw(spectrum);
+  // shader(myShader);
   texture(catimg); // use the global variable img here instead of this.img
   let spectrum = fft.analyze(freqBins);
   console.log(spectrum)
