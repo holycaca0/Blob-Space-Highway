@@ -5,7 +5,9 @@ let w = 1400;
 let h = 800;
 
 function preload() {
-  sound = loadSound("./assets/sebastiAn.mp3");
+  sound = loadSound("./assets/sebastiAn_1.mp3");
+  // img = loadImage("./assets/pexels_anni_roenkae_2832432.jpg");
+  // textureMode(NORMAL);
   // sound = loadSound("./assets/the_midnight.mp3");
   // myShader = loadShader("./assets/shader.vert", "./assets/shader.frag");
 }
@@ -51,7 +53,7 @@ function draw() {
   let spectrum = fft.analyze();
   // console.log(spectrum);
   camera(width / 2, height / 2, 600, width / 2, height / 2, 0, 0, 1, 0);
-
+  // console.log(sound);
   push();
   let stars = {
     x: random(width),
@@ -64,6 +66,14 @@ function draw() {
   translate(width / 2, height / 2);
   terrain.draw();
   terrain.updateTerrain();
-  blobby.draw(spectrum);
+  blobby.draw(spectrum, sound);
+  // texture(img);
+  // textureMode(NORMAL);
+  // beginShape();
+  // vertex(0, 0, 0, 0, 0);
+  // vertex(500, 0, 0, img.width, 0);
+  // vertex(500, 500, 0, img.width, img.height);
+  // vertex(0, 500, 0, 0, img.width);
+  // endShape(CLOSE);
   // shader(myShader);
 }

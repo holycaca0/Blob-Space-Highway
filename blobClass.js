@@ -6,7 +6,7 @@ class Blobby {
     this.minRadius = radius;
     this.maxRadius = radius * 2;
   }
-  draw(spectrum) {
+  draw(spectrum, sound) {
     // push();
     // stroke(255);
     // for (let i = 0; i < spectrum.length; i++) {
@@ -22,9 +22,16 @@ class Blobby {
     // // console.log(spectrum);
     // pop();
 
+    if (sound.isPlaying()) {
+      frameRate(30);
+      fill(random(255), random(255), 255);
+    } else {
+      fill(200, 100, 40);
+    }
+
+    // console.log(sound);
     push();
     beginShape();
-    fill(200, 100, 40);
     translate(0, -150);
     for (let i = 0; i < TWO_PI; i += 0.1) {
       // let offset = map(noise(this.xoff, this.yoff), 0, 1, -25, 25);
