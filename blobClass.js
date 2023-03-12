@@ -25,7 +25,7 @@ class Blobby {
     push();
     beginShape();
     fill(200, 100, 40);
-    translate(0, -200);
+    translate(0, -150);
     for (let i = 0; i < TWO_PI; i += 0.1) {
       // let offset = map(noise(this.xoff, this.yoff), 0, 1, -25, 25);
       // let offset = map(sin(i * 5 + frameCount * 0.05), -1, 1, -25, 25); // star?? if radius is 200, 200, 10

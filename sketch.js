@@ -1,4 +1,5 @@
-let blobby, terrain, sound, jump, button, fft, myShader;
+let blobby, terrain, sound, jump, button, fft;
+// let myShader;
 let scl = 30;
 let w = 1400;
 let h = 800;
@@ -44,8 +45,8 @@ function setup() {
 }
 
 function draw() {
-  shader(myShader);
-  myShader.setUniform("uFrameCount", frameCount);
+  // shader(myShader);
+  // myShader.setUniform("uFrameCount", frameCount);
   background(0);
   let spectrum = fft.analyze();
   // console.log(spectrum);
@@ -64,5 +65,5 @@ function draw() {
   terrain.draw();
   terrain.updateTerrain();
   blobby.draw(spectrum);
-  shader(myShader);
+  // shader(myShader);
 }
