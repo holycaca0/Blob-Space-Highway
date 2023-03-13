@@ -18,8 +18,8 @@ class Blobby {
       let y = change * sin(i);
   
    
-      let from = color(215, 0, 0); 
-      let to = color(160, 0, 180); 
+      let from = color(225, 170, 0); 
+      let to = color(190, 70, 180); 
       let gradientPosition = map(i, 0, TWO_PI, 0, 1); 
       let filled= lerpColor(from, to, gradientPosition); 
       fill(filled); 
