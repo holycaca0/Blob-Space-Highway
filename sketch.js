@@ -30,6 +30,7 @@ function toggleJump() {
 }
 
 function setup() {
+
   // song = loadSound("./fluffy.mp3", loaded);
   fft = new p5.FFT();
   fft.setInput(sound);
@@ -60,13 +61,16 @@ function draw() {
   let spectrum = fft.analyze();
   // console.log(spectrum);
   camera(width / 2, height / 2, 600, width / 2, height / 2, 0, 0, 1, 0);
+  blendMode(ADD)
 texture(catimg)
   push();
   let stars = {
     x: random(width),
     y: random(height / 3),
     size: random(3, 5),
+    opacity: random(50, 200)
   };
+  fill(255, 255, 255, stars.opacity);
   ellipse(stars.x, stars.y, stars.size, stars.size);
   pop();
 
