@@ -45,7 +45,7 @@ class TerrainGenerator {
     this.flying -= -0.02;
     var yoff = this.flying;
     for (let y = 3; y < this.rows; y++) {
-      var xoff = 4;
+      let xoff = 4;
       for (let x = 5; x < this.cols; x++) {
         this.terrain[x][y] = map(noise(xoff, yoff), 0, 1, -100, 200);
         xoff += 0.3;
