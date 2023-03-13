@@ -24,13 +24,8 @@ class Blobby {
 
     push();
     beginShape();
-    if (sound.isPlaying()) {
-      fill(random(255), random(255), 255);
-    } else {
-      fill(200, 100, 40);
-    }
     // TODO: blobby explodes with music
-    translate(0, -150);
+    translate(0, -200);
     for (let i = 0; i < TWO_PI; i += 0.1) {
       // let offset = map(noise(this.xoff, this.yoff), 0, 1, -25, 25);
       // let offset = map(sin(i * 5 + frameCount * 0.05), -1, 1, -25, 25); // star?? if radius is 200, 200, 10
@@ -38,6 +33,38 @@ class Blobby {
       // let offset = map(sin(i + frameCount * 0.1), -1, 1, -25, 25); // rotates the blob??
       // let change = this.radius + random(-5, 5);
       // let offset = map(noise(this.xoff, this.yoff), 0, 1, -50, 50); // sine wave is undulating but the perlin noise values are rotating around curve
+      /*
+      #E63F1A #D90D43 #A60D54
+      let from = color(200, 100, 40);
+      let to = color(200, 100, 40); //
+      to.setAlpha(255);
+      let gradient = lerpColor(from, to, 1);
+      fill(gradient);
+      fill(255, 100, 40);
+      */
+      // let mid = color(217, 13, 67);
+      // let from = color(230, 63, 26);
+      // let to = color(166, 13, 84);
+      // let gradientPosition = map(i, 0, TWO_PI, 0, 1);
+      // let midPosition = map(i, 0, TWO_PI, 0, 0.5);
+      // let firstBlend = lerpColor(from, mid, midPosition);
+      // let secondBlend = lerpColor(mid, to, gradientPosition - midPosition);
+      // let filled = lerpColor(firstBlend, secondBlend, 1);
+      // fill(filled);
+      // let from = color(215, 70, 0);
+      // let to = color(160, 70, 180);
+
+      let from = color(230, 63, 26);
+      let to = color(217, 13, 67);
+      let gradientPosition = map(i, 0, TWO_PI, 0, 1);
+      if (sound.isPlaying()) {
+        from = color(91, 181, 217);
+        to = color(62, 102, 249);
+        // to = color(140, 175, 184);
+      }
+      let filled = lerpColor(from, to, gradientPosition);
+      fill(filled);
+
       let distort = noise(this.xoff + cos(i) * 0.5, this.yoff + sin(i) * 0.5);
       let offset = map(distort, 0, 1, -50, 50);
       let change = this.radius + offset;

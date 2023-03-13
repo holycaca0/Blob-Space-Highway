@@ -8,7 +8,8 @@ let catX = 0;
 let catY = 0;
 let lspX = 700;
 let lspY = 100;
-let speed = 1;
+let speed = 0.5;
+let rotateAngle = 0;
 
 function preload() {
   sound = loadSound("fluffy.mp3");
@@ -56,7 +57,8 @@ function setup() {
   }
   fft = new p5.FFT(0, 256);
   // textureMode(NORMAL);
-  asteroid = createGraphics(1000, 1000);
+  // asteroid = createGraphics(1000, 1000);
+  imageMode(CENTER);
 }
 
 function draw() {
@@ -72,12 +74,12 @@ function draw() {
   // vertex(img.width, img.height, 0, 1, 1);
   // vertex(0, img.height, 0, 0, 1);
   // endShape(CLOSE);
-
   background(0);
   let spectrum = fft.analyze();
   // console.log(spectrum);
-  camera(width / 2, height / 2, 600, width / 2, height / 2, 0, 0, 1, 0);
+  camera(width / 2, height / 2, 600, width / 2, height / 2, 0, 0, 1, 0); //600
   blendMode(ADD);
+  // blendMode(SOFT_LIGHT);
   texture(catimg);
   push();
   let stars = {
@@ -94,6 +96,7 @@ function draw() {
   terrain.draw();
   terrain.updateTerrain();
   blobby.draw(spectrum, sound);
+  // blobby.draw(spectrum, sound);
   // shader(myShader);
   texture(catimg); // use the global variable img here instead of this.img
   // let spectrum = fft.analyze(freqBins);
@@ -112,19 +115,44 @@ function draw() {
 
   angle += 0.01;
   endShape();
-  asteroid.fill(255);
-  asteroid.circle(200, 200, 200);
-  img.mask(asteroid);
-  image(img, -500, -300, 300, 300);
+  // asteroid.fill(255);
+  // asteroid.circle(200, 200, 200);
+  // img.mask(asteroid);
+  // image(img, -500, -300, 300, 300);
 
-  push();
-  if (lspX >= 705 && lspY >= 105) {
-    speed = -1;
+  // push();
+
+  // pop();
+  if (lspX >= 710 && lspY >= 90) {
+    speed = -0.5;
   } else if (lspX <= 700 && lspY <= 100) {
-    speed = 1;
+    speed = 0.5;
   }
   lspX = lspX + speed;
   lspY = lspY + speed;
   image(lsp, lspX, lspY, 100, 100);
-  pop();
+
+  // for (let a = 0; a < radians(360); a += radians(30)) {
+  //   push();
+  //   translate(width / 2, height / 2);
+  //   rotate(a);
+  //   // translate(0, 200);
+  //   // rotate(-angle);
+  //   image(lsp, lspX, lspY, 100, 100);
+
+  //   pop();
+  // }
+  // for (let i = 1; i <= 4; i++) {
+  // Save the current state (translation/rotation/etc)
+  // push();
+  // Translate to the origin of the shape
+  // push();
+  // translate(width / 2, height / 2);
+  // // Rotate around the origin
+  // rotate(millis() / 1000 / 2);
+  // // Because we've translated to the origin, we draw the square at 0, 0
+  // image(lsp, lspX, lspY, 100, 100);
+  // // Restore the state saved with push();
+  // pop();
+  // }
 }
