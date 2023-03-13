@@ -6,6 +6,9 @@ let h = 800;
 let angle = 0;
 let catX = 0;
 let catY = 0;
+let lspX = 700;
+let lspY = 100;
+let speed = 1;
 
 function preload() {
   sound = loadSound("fluffy.mp3");
@@ -94,7 +97,7 @@ function draw() {
   // shader(myShader);
   texture(catimg); // use the global variable img here instead of this.img
   // let spectrum = fft.analyze(freqBins);
-  console.log(spectrum);
+  // console.log(spectrum);
   beginShape();
   let size = map(spectrum[0], 0, 255, 50, 200); // map size to lowest frequency bin
   if (size > 354) {
@@ -113,5 +116,15 @@ function draw() {
   asteroid.circle(200, 200, 200);
   img.mask(asteroid);
   image(img, -500, -300, 300, 300);
-  image(lsp, 100, 100, 100, 100);
+
+  push();
+  if (lspX >= 705 && lspY >= 105) {
+    speed = -1;
+  } else if (lspX <= 700 && lspY <= 100) {
+    speed = 1;
+  }
+  lspX = lspX + speed;
+  lspY = lspY + speed;
+  image(lsp, lspX, lspY, 100, 100);
+  pop();
 }
