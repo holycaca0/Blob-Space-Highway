@@ -62,6 +62,11 @@ function draw() {
   // console.log(spectrum);
   camera(width / 2, height / 2, 600, width / 2, height / 2, 0, 0, 1, 0);
   blendMode(ADD)
+  // let from = color(255, 102, 178); 
+  // let to = color(127, 0, 255); 
+  // let gradient = lerpColor(from, to, 1);
+  // fill(gradient);
+  // ellipse(100,100,50)
 texture(catimg)
   push();
   let stars = {

@@ -26,10 +26,15 @@ class Terrain {
     translate(0, 60);
     rotateX(PI / 3);
     fill(100, 80, 250, 80);
+    // stroke(255,102,178)
     translate(-this.w / 2, -this.h / 2);
     for (let y = 3; y < this.rows - 1; y++) {
       beginShape(TRIANGLE_STRIP);
       for (let x = 1; x < this.cols; x++) {
+  //       let from = color(120, 0, 200); 
+  // let to = color(120, 0, 255); 
+  // let gradient = lerpColor(from, to, .05);
+  // fill(gradient);
         vertex(x * this.scl, y * this.scl, this.terrain[x][y]);
         vertex(x * this.scl, (y + 0) * this.scl, this.terrain[x][y + 3]);
       }
