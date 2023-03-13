@@ -9,7 +9,7 @@ let catY = 0;
 
 function preload() {
   sound = loadSound("fluffy.mp3");
-  catimg = loadImage("nyancat.jpg")
+  catimg = loadImage("nyancat.jpg");
   // sound = loadSound("./assets/the_midnight.mp3");
   // myShader = loadShader("./assets/shader.vert", "./assets/shader.frag");
 }
@@ -52,7 +52,7 @@ function setup() {
 }
 
 function draw() {
-  let catX = map(mouseX, 0, width, -width/2, width/2);
+  let catX = map(mouseX, 0, width, -width / 2, width / 2);
   let catY = height / 2 + sin(frameCount * 0.1) * 50;
   // shader(myShader);
   // myShader.setUniform("uFrameCount", frameCount);
@@ -60,7 +60,7 @@ function draw() {
   let spectrum = fft.analyze();
   // console.log(spectrum);
   camera(width / 2, height / 2, 600, width / 2, height / 2, 0, 0, 1, 0);
-texture(catimg)
+  texture(catimg);
   push();
   let stars = {
     x: random(width),
@@ -77,21 +77,20 @@ texture(catimg)
   // shader(myShader);
   texture(catimg); // use the global variable img here instead of this.img
   // let spectrum = fft.analyze(freqBins);
-  console.log(spectrum)
-  beginShape()
+  // console.log(spectrum);
+  beginShape();
   let size = map(spectrum[0], 0, 255, 50, 200); // map size to lowest frequency bin
-  if(size > 354){
-    blobby.update(500, 430, 100);
- 
-  }
-  translate((-width/4 +1), -height/4,)
+  // if (size > 354) {
+  //   blobby.update(500, 430, 100);
+  // }
+
+  translate(-width / 4 + 1, -height / 4);
   push();
   texture(catimg);
   rotateY(angle);
   sphere(30, 30, 10);
   pop();
-  
+
   angle += 0.01;
-  endShape()
+  endShape();
 }
- 
