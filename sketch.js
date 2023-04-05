@@ -6,8 +6,8 @@ let h = 800;
 let angle = 0;
 let catX = 0;
 let catY = 0;
-let lspX = 700;
-let lspY = 100;
+let lspX = 0;
+let lspY = 0;
 let speed = 0.5;
 let rotateAngle = 0;
 
@@ -146,13 +146,14 @@ function draw() {
   // Save the current state (translation/rotation/etc)
   // push();
   // Translate to the origin of the shape
-  // push();
+  // draw image at 0,0 , then rotate
+  push();
   // translate(width / 2, height / 2);
-  // // Rotate around the origin
-  // rotate(millis() / 1000 / 2);
+  // Rotate around the origin
+  rotate(millis() / 1000 / 2);
   // // Because we've translated to the origin, we draw the square at 0, 0
-  // image(lsp, lspX, lspY, 100, 100);
+  image(lsp, lspX, lspY, 100, 100);
   // // Restore the state saved with push();
-  // pop();
+  pop();
   // }
 }
